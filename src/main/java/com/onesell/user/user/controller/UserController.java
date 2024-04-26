@@ -17,6 +17,9 @@ public class UserController {
 
     private final UserService userService;
 
+    /**
+     * 회원가입
+     */
     @PostMapping("/join")
     public ApiResponse join(@RequestBody @Valid final UserJoinRequest userJoinRequest) {
         final ApiResponse apiResponse = userService.join(userJoinRequest);
