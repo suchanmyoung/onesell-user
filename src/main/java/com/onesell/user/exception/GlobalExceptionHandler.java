@@ -16,8 +16,10 @@ public class GlobalExceptionHandler {
         final MethodArgumentNotValidException e) {
         final String[] codes = e.getBindingResult().getFieldError().getCodes();
         final ErrorCode errorCode = ErrorCode.NOT_VALID_REQUEST_ERROR;
-        log.warn("handleMethodArgumentNotValidException : " + e.getMessage());
+
+        log.warn("handleMethodArgumentNotValidException:: message={}" + e.getMessage());
         ApiResponse apiResponse = ApiResponse.of(errorCode.getStatus(), errorCode.getMessage(), codes);
+
         return ResponseEntity.status(apiResponse.getStatus())
             .body(apiResponse);
     }
@@ -25,8 +27,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     protected ResponseEntity<ApiResponse> handleBusinessException(final BusinessException e) {
         final ErrorCode errorCode = e.getErrorCode();
-        log.warn("handleBusinessException : " + e.getMessage());
+
+        log.warn("handleBusinessException:: message={}", errorCode.getMessage());
         ApiResponse apiResponse = ApiResponse.noData(errorCode.getStatus(), errorCode.getMessage());
+
         return ResponseEntity.status(apiResponse.getStatus())
             .body(apiResponse);
     }
