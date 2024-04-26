@@ -1,7 +1,9 @@
 package com.onesell.user.user.controller;
 
+import com.onesell.user.common.response.ApiResponse;
 import com.onesell.user.user.dto.UserJoinRequest;
 import com.onesell.user.user.service.UserService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,8 +18,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/join")
-    public void join(@RequestBody UserJoinRequest userJoinRequest) {
-        userService.join(userJoinRequest);
+    public ApiResponse join(@RequestBody @Valid final UserJoinRequest userJoinRequest) {
+        final ApiResponse apiResponse = userService.join(userJoinRequest);
+        return apiResponse;
     }
 
 }

@@ -2,9 +2,13 @@ package com.onesell.user.common.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
 @Builder
 public class ApiResponse {
 

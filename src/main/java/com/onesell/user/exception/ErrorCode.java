@@ -6,9 +6,11 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public class ErrorCode {
+public enum ErrorCode {
 
-    private final String message;
+    NOT_VALID_REQUEST_ERROR(HttpStatus.BAD_REQUEST, "잘못된 값이 입력되었습니다.");
+
     private final HttpStatus status;
+    private final String message;
 
 }

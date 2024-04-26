@@ -26,6 +26,7 @@ public class UserJoinResponse {
             .nickname(userEntity.getNickname())
             .name(userEntity.getName())
             .cellphone(userEntity.getEmail())
+            .email(userEntity.getEmail())
             .build();
     }
 }
