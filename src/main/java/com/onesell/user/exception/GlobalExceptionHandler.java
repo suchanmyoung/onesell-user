@@ -1,6 +1,6 @@
 package com.onesell.user.exception;
 
-import com.onesell.user.common.CommonResponse;
+import com.onesell.user.common.response.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
-    protected CommonResponse handleBusinessException(final BusinessException e) {
+    protected ApiResponse handleBusinessException(final BusinessException e) {
         final ErrorCode errorCode = e.getErrorCode();
         log.warn("handleBusinessException : " + e.getMessage());
-        return CommonResponse.noData(errorCode.getStatus(), errorCode.getMessage());
+        return ApiResponse.noData(errorCode.getStatus(), errorCode.getMessage());
     }
 }

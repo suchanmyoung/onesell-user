@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
 public class UserEntity {
 
     @Id
@@ -43,5 +45,9 @@ public class UserEntity {
             .nickname(userJoinRequest.getNickname())
             .email(userJoinRequest.getEmail())
             .build();
+    }
+
+    public void applyEncryptPassword(String encryptPassword) {
+        this.password = encryptPassword;
     }
 }

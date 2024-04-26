@@ -1,4 +1,4 @@
-package com.onesell.user.common;
+package com.onesell.user.common.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,30 +6,30 @@ import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
 @Builder
-public class CommonResponse {
+public class ApiResponse {
 
     private HttpStatus status;
     private String message;
     private Object data;
 
-    public static CommonResponse of(final HttpStatus status, final Object data) {
-        return CommonResponse.builder()
+    public static ApiResponse of(final HttpStatus status, final Object data) {
+        return ApiResponse.builder()
             .status(status)
             .data(data)
             .build();
     }
 
-    public static CommonResponse of(final HttpStatus status, final String message,
+    public static ApiResponse of(final HttpStatus status, final String message,
         final Object data) {
-        return CommonResponse.builder()
+        return ApiResponse.builder()
             .status(status)
             .message(message)
             .data(data)
             .build();
     }
 
-    public static CommonResponse noData(final HttpStatus status, final String message) {
-        return CommonResponse.builder()
+    public static ApiResponse noData(final HttpStatus status, final String message) {
+        return ApiResponse.builder()
             .status(status)
             .message(message)
             .build();
