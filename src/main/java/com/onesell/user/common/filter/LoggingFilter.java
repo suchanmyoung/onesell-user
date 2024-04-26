@@ -21,7 +21,8 @@ public class LoggingFilter implements Filter {
         throws IOException, ServletException {
         final HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         final String method = httpServletRequest.getMethod();
-        final String requestURI = httpServletRequest.getRequestURI();
+
+        final String requestURI = makeRequestURI(httpServletRequest);
         final String requestId = UUID.randomUUID().toString();
 
         MDC.put("REQUEST_ID_KEY", requestId);
@@ -32,6 +33,17 @@ public class LoggingFilter implements Filter {
         } finally {
             log.info("API RESPONSE:: method={}, requestURI={}, ", method, requestURI);
             MDC.remove("REQUEST_ID_KEY");
+        }
+    }
+
+    private String makeRequestURI(HttpServletRequest httpServletRequest) {
+        final String requestURI = httpServletRequest.getRequestURI();
+        final String queryString = httpServletRequest.getQueryString();
+
+        if (queryString == null) {
+            return requestURI;
+        } else {
+            return requestURI + "?" + queryString;
         }
     }
 }
