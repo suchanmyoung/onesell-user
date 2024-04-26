@@ -1,6 +1,8 @@
 package com.onesell.user.user.persistence;
 
+import com.onesell.user.common.encryptor.Encryptor;
 import com.onesell.user.user.dto.UserJoinRequest;
+import com.onesell.user.user.dto.UserModifyRequest;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,7 +58,30 @@ public class UserEntity {
             .build();
     }
 
-    public void applyEncryptPassword(final String encryptPassword) {
+    public void applyEncryptPassword(final Encryptor encryptor) {
+        final String encryptPassword = encryptor.encrypt(this.password);
         this.password = encryptPassword;
+    }
+
+    public void modify(final Encryptor encryptor, UserModifyRequest userModifyRequest) {
+        if (userModifyRequest.getPassword() != null) {
+            this.password = encryptor.encrypt(userModifyRequest.getPassword());
+        }
+
+        if (userModifyRequest.getNickname() != null) {
+            this.nickname = userModifyRequest.getNickname();
+        }
+
+        if (userModifyRequest.getName() != null) {
+            this.name = userModifyRequest.getName();
+        }
+
+        if (userModifyRequest.getCellphone() != null) {
+            this.cellphone = userModifyRequest.getCellphone();
+        }
+
+        if (userModifyRequest.getEmail() != null) {
+            this.email = userModifyRequest.getEmail();
+        }
     }
 }

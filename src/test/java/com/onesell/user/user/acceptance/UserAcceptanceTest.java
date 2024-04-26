@@ -1,10 +1,14 @@
 package com.onesell.user.user.acceptance;
 
+import static com.onesell.user.user.fixture.UserFixture.회원_수정_요청_픽스처;
 import static com.onesell.user.user.fixture.UserFixture.회원가입_요청_픽스처;
+import static com.onesell.user.user.step.UserStep.사용자가_회원가입함;
+import static com.onesell.user.user.step.UserStep.회원_수정_요청;
 import static com.onesell.user.user.step.UserStep.회원가입_요청;
 
 import com.onesell.user.common.AcceptanceTest;
 import com.onesell.user.user.dto.UserJoinRequest;
+import com.onesell.user.user.dto.UserModifyRequest;
 import com.onesell.user.user.fixture.UserFixture;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
@@ -60,6 +64,34 @@ public class UserAcceptanceTest extends AcceptanceTest {
 
         // then
         응답_코드_검증(중복_ID_회원가입_응답, HttpStatus.CONFLICT);
+    }
+
+    @DisplayName("정상 회원수정")
+    @Test
+    void 회원수정() {
+        // given
+        UserJoinRequest 회원가입_요청_픽스처 = 회원가입_요청_픽스처();
+        String 사용자_ID = 사용자가_회원가입함(회원가입_요청_픽스처);
+
+        // when
+        UserModifyRequest 회원_수정_요청_픽스처 = 회원_수정_요청_픽스처();
+        ExtractableResponse<Response> 회원_수정_응답 = 회원_수정_요청(사용자_ID, 회원_수정_요청_픽스처);
+
+        // then
+        응답_코드_검증(회원_수정_응답, HttpStatus.OK);
+    }
+
+    @DisplayName("존재하지 않는 ID에 대한 회원 수정")
+    @Test
+    void 존재하지_않는_ID_수정으로_회원수정_실패() {
+        // given
+        UserModifyRequest 회원_수정_요청_픽스처 = 회원_수정_요청_픽스처();
+
+        // when
+        ExtractableResponse<Response> 회원_수정_응답 = 회원_수정_요청("ANY", 회원_수정_요청_픽스처);
+
+        // then
+        응답_코드_검증(회원_수정_응답, HttpStatus.NOT_FOUND);
     }
 
 }

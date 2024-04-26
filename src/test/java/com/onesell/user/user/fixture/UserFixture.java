@@ -1,6 +1,7 @@
 package com.onesell.user.user.fixture;
 
 import com.onesell.user.user.dto.UserJoinRequest;
+import com.onesell.user.user.dto.UserModifyRequest;
 import java.util.Arrays;
 import java.util.List;
 
@@ -77,6 +78,16 @@ public class UserFixture {
             .email("ANOTHER_EMAIL")
             .name("ANOTHER_NAME")
             .cellphone("ANOTHER_CELLPHONE")
+            .build();
+    }
+
+    public static UserModifyRequest 회원_수정_요청_픽스처() {
+        return UserModifyRequest.builder()
+            .password("MODIFY_PASSWORD")
+            .nickname("MODIFY_NICKNAME")
+            .email("MODIFY_EMAIL")
+            .name("MODIFY_NAME")
+            .cellphone("MODIFY_CELLPHONE")
             .build();
     }
 }
