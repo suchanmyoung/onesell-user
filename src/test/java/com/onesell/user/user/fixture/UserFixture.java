@@ -17,7 +17,7 @@ public class UserFixture {
             .build();
     }
 
-    public static List<UserJoinRequest> 회원가입_필수값_누락_픽스처() {
+    public static List<UserJoinRequest> 회원가입_요청_필수값_누락_픽스처() {
         final UserJoinRequest ID_누락 = UserJoinRequest.builder()
             .password("PASSWORD")
             .nickname("NICKNAME")
@@ -67,5 +67,16 @@ public class UserFixture {
             .build();
 
         return Arrays.asList(ID_누락, PASSWORD_누락, NICKNAME_누락, EMAIL_누락, NAME_누락, CELLPHONE_누락);
+    }
+
+    public static UserJoinRequest 회원가입_중복_ID_픽스처() {
+        return UserJoinRequest.builder()
+            .userId("ID")
+            .password("ANOTHER_PASSWORD")
+            .nickname("ANOTHER_NICKNAME")
+            .email("ANOTHER_EMAIL")
+            .name("ANOTHER_NAME")
+            .cellphone("ANOTHER_CELLPHONE")
+            .build();
     }
 }
