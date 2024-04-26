@@ -5,6 +5,7 @@ import com.onesell.user.user.dto.UserJoinRequest;
 import com.onesell.user.user.service.UserService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +22,10 @@ public class UserController {
      * 회원가입
      */
     @PostMapping("/join")
-    public ApiResponse join(@RequestBody @Valid final UserJoinRequest userJoinRequest) {
+    public ResponseEntity<ApiResponse> join(@RequestBody @Valid final UserJoinRequest userJoinRequest) {
         final ApiResponse apiResponse = userService.join(userJoinRequest);
-        return apiResponse;
+        return ResponseEntity.status(apiResponse.getStatus())
+            .body(apiResponse);
     }
 
 }
