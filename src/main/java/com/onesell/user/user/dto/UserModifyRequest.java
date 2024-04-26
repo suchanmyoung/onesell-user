@@ -12,13 +12,9 @@ import lombok.NoArgsConstructor;
 public class UserModifyRequest {
 
     private String password;
-
     private String nickname;
-
     private String name;
-
     private String cellphone;
-
     private String email;
 
 }
