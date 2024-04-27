@@ -2,6 +2,7 @@ package com.onesell.user.exception;
 
 import com.onesell.user.common.response.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,11 +15,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<ApiResponse> handleMethodArgumentNotValidException(
         final MethodArgumentNotValidException e) {
-        final String[] codes = e.getBindingResult().getFieldError().getCodes();
-        final ErrorCode errorCode = ErrorCode.NOT_VALID_REQUEST_ERROR;
 
-        log.warn("handleMethodArgumentNotValidException:: message={}" + e.getMessage());
-        ApiResponse apiResponse = ApiResponse.of(errorCode.getStatus(), errorCode.getMessage(), codes);
+        final String[] codes = e.getBindingResult().getFieldError().getCodes();
+        final String message = e.getBindingResult().getFieldError().getDefaultMessage();
+
+        log.warn("handleMethodArgumentNotValidException:: message={}" + message);
+        ApiResponse apiResponse = ApiResponse.of(HttpStatus.BAD_REQUEST, message, codes);
 
         return ResponseEntity.status(apiResponse.getStatus())
             .body(apiResponse);
