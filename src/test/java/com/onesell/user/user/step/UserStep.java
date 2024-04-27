@@ -4,6 +4,7 @@ import static com.onesell.user.common.Step.*;
 
 import com.onesell.user.common.AcceptanceTest;
 import com.onesell.user.common.Step;
+import com.onesell.user.user.dto.SortCondition;
 import com.onesell.user.user.dto.UserJoinRequest;
 import com.onesell.user.user.dto.UserModifyRequest;
 import io.restassured.RestAssured;
@@ -37,6 +38,17 @@ public class UserStep extends Step {
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .body(userModifyRequest)
             .when().patch("/api/user/" + userId)
+            .then().log().all()
+            .extract();
+    }
+
+    public static ExtractableResponse<Response> 회원_목록_조회_요청(final int page, final int size, final SortCondition sort) {
+        return RestAssured
+            .given().log().all()
+            .queryParam("page", page)
+            .queryParam("size", size)
+            .queryParam("sort", sort)
+            .when().get("/api/user/list")
             .then().log().all()
             .extract();
     }

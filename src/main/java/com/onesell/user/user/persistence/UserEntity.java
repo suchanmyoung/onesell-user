@@ -1,5 +1,6 @@
 package com.onesell.user.user.persistence;
 
+import com.onesell.user.common.audit.AuditEntity;
 import com.onesell.user.common.encryptor.Encryptor;
 import com.onesell.user.user.dto.UserJoinRequest;
 import com.onesell.user.user.dto.UserModifyRequest;
@@ -22,11 +23,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @Getter
-public class UserEntity {
+public class UserEntity extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_generator")
-    @SequenceGenerator(name = "user_seq_generator", sequenceName = "user_seq_seq", allocationSize = 1)
+    @SequenceGenerator(name = "user_seq_generator", sequenceName = "user_id_seq", allocationSize = 1)
     @Column
     private Long id;
 
