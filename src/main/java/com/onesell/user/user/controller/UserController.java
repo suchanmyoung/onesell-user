@@ -1,6 +1,7 @@
 package com.onesell.user.user.controller;
 
 import com.onesell.user.common.response.ApiResponse;
+import com.onesell.user.common.response.ResponseEntityWrapper;
 import com.onesell.user.user.dto.SortCondition;
 import com.onesell.user.user.dto.UserJoinRequest;
 import com.onesell.user.user.dto.UserModifyRequest;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +35,7 @@ public class UserController {
     public ResponseEntity<ApiResponse> join(
         @RequestBody @Valid final UserJoinRequest userJoinRequest) {
         final ApiResponse apiResponse = userService.join(userJoinRequest);
-        return ResponseEntity.status(apiResponse.getStatus())
-            .body(apiResponse);
+        return ResponseEntityWrapper.from(apiResponse);
     }
 
     /**
@@ -45,8 +46,7 @@ public class UserController {
         @RequestParam("size") int size, @RequestParam("sort") SortCondition sort) {
         PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort.value()).descending());
         final ApiResponse apiResponse = userService.getUsers(pageRequest);
-        return ResponseEntity.status(apiResponse.getStatus())
-            .body(apiResponse);
+        return ResponseEntityWrapper.from(apiResponse);
     }
 
     /**
@@ -56,7 +56,6 @@ public class UserController {
     public ResponseEntity<ApiResponse> modify(@PathVariable final String userId,
         @RequestBody final UserModifyRequest userModifyRequest) {
         final ApiResponse apiResponse = userService.modify(userId, userModifyRequest);
-        return ResponseEntity.status(apiResponse.getStatus())
-            .body(apiResponse);
+        return ResponseEntityWrapper.from(apiResponse);
     }
 }
