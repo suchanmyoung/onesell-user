@@ -19,7 +19,14 @@
 * User Name : sa
 * 애플리케이션 구동 시 회원 테이블 생성 및 더미 데이터 49건 Insert ```resources > schema.sql / data.sql```
 
-#### Develop TODO List
+#### Logging
+* 대상 : API Request / Response / Exception
+* 방식 
+  * LoggingFilter 클래스 사용
+  * MDC에 Log ID를 담아 Request에서 Response 까지의 모든 과정 추적
+  * 별도 파일로 남기지 않음
+
+#### Dev List
 - [x] Common
   - [x] 예외 규격 및 핸들러 정의
   - [x] 공통 응답 규격 정의
@@ -27,6 +34,7 @@
   - [x] Init Data 
   - [x] API Document 설정
   - [x] Auditing
+  - [x] README 작성
 - [x] 회원가입
   - [x] 기능구현
   - [x] 예외처리
@@ -45,6 +53,4 @@
 
 - [ ] after
   - [ ] 단위테스트
-  - [ ] 필요 로깅 추가
-  - [ ] 필요사항 안내
   - [ ] 인수테스트 케이스 추가 
