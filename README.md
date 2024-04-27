@@ -5,7 +5,7 @@
   - [x] 예외 규격 및 핸들러 정의
   - [x] 공통 응답 규격 정의
   - [x] API 로깅 설정
-  - [ ] Init Data 
+  - [x] Init Data 
   - [x] API Document 설정
   - [ ] 도커라이징
   - [x] Auditing

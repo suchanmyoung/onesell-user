@@ -27,7 +27,7 @@ public class UserEntity extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_generator")
-    @SequenceGenerator(name = "user_seq_generator", sequenceName = "user_seq_seq", allocationSize = 1)
+    @SequenceGenerator(name = "user_seq_generator", sequenceName = "user_id_seq", allocationSize = 1)
     @Column
     private Long id;
 
