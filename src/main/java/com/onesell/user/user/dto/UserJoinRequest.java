@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.Length;
 public class UserJoinRequest {
 
     @NotBlank(message = "아이디는 공백일 수 없습니다.")
-    @Length(min = 6, message = "아이디는 6자 이상이어야 합니다.")
+    @Length(min = 4, message = "아이디는 4자 이상이어야 합니다.")
     @Length(max = 20, message = "아이디는 20자 이하이어야 합니다.")
     @Pattern(regexp = Regex.ONLY_ENG_AND_NUMBER, message = "아이디는 영문과 숫자의 조합만 가능합니다.")
     private String userId;

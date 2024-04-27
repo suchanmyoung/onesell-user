@@ -1,6 +1,25 @@
-### Onesell User
+### Onesell User API
 
-#### TODO
+<hr> 
+
+#### How To Run
+
+* Clone This Repository ```https://github.com/suchanmyoung/onesell-user.git```
+* Use JDK 1.8
+* Build Project ```./gradlew clean build```
+* Run Application ```java -jar ./build/libs/user-0.0.1-SNAPSHOT.jar```
+* Enter ```http://localhost:8080/swagger```
+
+<hr>
+
+#### Database
+* In-memory H2 사용 
+* 애플리케이션 구동 후 h2-console 웹 접근 가능 ```http://localhost:8080/h2-console```
+* JDBC URL : jdbc:h2:mem:devdb
+* User Name : sa
+* 애플리케이션 구동 시 회원 테이블 생성 및 더미 데이터 49건 Insert ```resources > schema.sql / data.sql```
+
+#### Develop TODO List
 - [x] Common
   - [x] 예외 규격 및 핸들러 정의
   - [x] 공통 응답 규격 정의
