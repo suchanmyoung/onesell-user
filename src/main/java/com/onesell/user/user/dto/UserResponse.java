@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserJoinResponse {
+public class UserResponse {
 
     private String userId;
     private String nickname;
@@ -18,12 +18,12 @@ public class UserJoinResponse {
     private String cellphone;
     private String email;
 
-    public static UserJoinResponse byEntity(UserEntity userEntity) {
-        return UserJoinResponse.builder()
+    public static UserResponse byEntity(final UserEntity userEntity) {
+        return UserResponse.builder()
             .userId(userEntity.getUserId())
             .nickname(userEntity.getNickname())
             .name(userEntity.getName())
-            .cellphone(userEntity.getEmail())
+            .cellphone(userEntity.getCellphone())
             .email(userEntity.getEmail())
             .build();
     }
