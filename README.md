@@ -7,7 +7,6 @@
   - [x] API 로깅 설정
   - [x] Init Data 
   - [x] API Document 설정
-  - [ ] 도커라이징
   - [x] Auditing
 - [ ] 회원가입
   - [x] 기능구현
