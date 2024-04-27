@@ -43,7 +43,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public ApiResponse getUsers(final PageRequest pageRequest) {
         final Page<UserEntity> userEntityPage = userRepository.findAll(pageRequest);
-        final UserListResponse userListResponse = UserListResponse.from(userEntityPage);
+        final UserListResponse userListResponse = UserListResponse.byEntity(userEntityPage);
         return ApiResponse.of(HttpStatus.OK, userListResponse);
     }
 

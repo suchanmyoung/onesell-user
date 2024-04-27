@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 public class UserModifyResponse {
 
     private String userId;
-    private String password;
     private String nickname;
     private String name;
     private String cellphone;
@@ -22,7 +21,6 @@ public class UserModifyResponse {
     public static UserModifyResponse byEntity(UserEntity userEntity) {
         return UserModifyResponse.builder()
             .userId(userEntity.getUserId())
-            .password(userEntity.getPassword())
             .nickname(userEntity.getNickname())
             .name(userEntity.getName())
             .cellphone(userEntity.getEmail())
