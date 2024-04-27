@@ -1,7 +1,7 @@
 CREATE TABLE ONESELL_USER
 (
     id        NUMBER PRIMARY KEY,
-    user_id   VARCHAR(30),
+    user_id   VARCHAR(20),
     password  CHAR(65),
     name      VARCHAR(30),
     nickname  VARCHAR(30),

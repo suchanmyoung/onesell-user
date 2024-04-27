@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,9 +41,9 @@ public class UserController {
      * 회원목록조회
      */
     @GetMapping("/list")
-    public ResponseEntity<ApiResponse> getUsers(@RequestParam("page") int page,
-        @RequestParam("size") int size, @RequestParam("sort") SortCondition sort) {
-        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort.value()).descending());
+    public ResponseEntity<ApiResponse> getUsers(@RequestParam("page") final int page,
+        @RequestParam("size") final int size, @RequestParam("sort") final SortCondition sort) {
+        final PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort.value()).descending());
         final ApiResponse apiResponse = userService.getUsers(pageRequest);
         return ResponseEntityWrapper.from(apiResponse);
     }
@@ -53,7 +52,7 @@ public class UserController {
      * 회원수정
      */
     @PatchMapping("/{userId}")
-    public ResponseEntity<ApiResponse> modify(@PathVariable final String userId,
+    public ResponseEntity<ApiResponse> modify(@PathVariable @Valid final String userId,
         @RequestBody final UserModifyRequest userModifyRequest) {
         final ApiResponse apiResponse = userService.modify(userId, userModifyRequest);
         return ResponseEntityWrapper.from(apiResponse);
