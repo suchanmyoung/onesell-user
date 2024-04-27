@@ -3,18 +3,23 @@ package com.onesell.user.user.acceptance;
 import static com.onesell.user.user.fixture.UserFixture.회원_수정_요청_픽스처;
 import static com.onesell.user.user.fixture.UserFixture.회원가입_요청_픽스처;
 import static com.onesell.user.user.step.UserStep.사용자가_회원가입함;
+import static com.onesell.user.user.step.UserStep.회원_목록_조회_요청;
 import static com.onesell.user.user.step.UserStep.회원_수정_요청;
 import static com.onesell.user.user.step.UserStep.회원가입_요청;
 
 import com.onesell.user.common.AcceptanceTest;
+import com.onesell.user.user.dto.SortCondition;
 import com.onesell.user.user.dto.UserJoinRequest;
 import com.onesell.user.user.dto.UserModifyRequest;
 import com.onesell.user.user.fixture.UserFixture;
+import com.onesell.user.user.step.UserStep;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.springframework.http.HttpStatus;
 
 @DisplayName("회원 기능")
@@ -94,4 +99,18 @@ public class UserAcceptanceTest extends AcceptanceTest {
         응답_코드_검증(회원_수정_응답, HttpStatus.NOT_FOUND);
     }
 
+    @DisplayName("정상 회원목록조회")
+    @ParameterizedTest
+    @EnumSource(value = SortCondition.class)
+    void 회원목록조회(SortCondition sort) {
+        // given
+        final int page = 0;
+        final int size = 10;
+
+        // when
+        ExtractableResponse<Response> 회원_목록_조회_응답 = 회원_목록_조회_요청(page, size, sort);
+
+        // then
+        응답_코드_검증(회원_목록_조회_응답, HttpStatus.OK);
+    }
 }
