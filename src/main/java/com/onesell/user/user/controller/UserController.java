@@ -52,8 +52,8 @@ public class UserController {
      * 회원수정
      */
     @PatchMapping("/{userId}")
-    public ResponseEntity<ApiResponse> modify(@PathVariable @Valid final String userId,
-        @RequestBody final UserModifyRequest userModifyRequest) {
+    public ResponseEntity<ApiResponse> modify(@PathVariable final String userId,
+        @RequestBody @Valid final UserModifyRequest userModifyRequest) {
         final ApiResponse apiResponse = userService.modify(userId, userModifyRequest);
         return ResponseEntityWrapper.from(apiResponse);
     }
