@@ -12,7 +12,6 @@ import com.onesell.user.user.dto.SortCondition;
 import com.onesell.user.user.dto.UserJoinRequest;
 import com.onesell.user.user.dto.UserModifyRequest;
 import com.onesell.user.user.fixture.UserFixture;
-import com.onesell.user.user.step.UserStep;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import java.util.List;
