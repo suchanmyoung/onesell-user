@@ -84,10 +84,10 @@ public class UserFixture {
     public static UserModifyRequest 회원_수정_요청_픽스처() {
         return UserModifyRequest.builder()
             .password("MODIFY_PASSWORD")
-            .nickname("MODIFY_NICKNAME")
-            .email("MODIFY_EMAIL")
-            .name("MODIFY_NAME")
-            .cellphone("MODIFY_CELLPHONE")
+            .nickname("MODIFY_N")
+            .email("MODIFY@google.com")
+            .name("MODIFY")
+            .cellphone("010-0000-1111")
             .build();
     }
 }

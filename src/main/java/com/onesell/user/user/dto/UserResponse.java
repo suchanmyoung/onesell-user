@@ -1,6 +1,7 @@
 package com.onesell.user.user.dto;
 
 import com.onesell.user.user.persistence.UserEntity;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,6 +18,8 @@ public class UserResponse {
     private String name;
     private String cellphone;
     private String email;
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
     public static UserResponse byEntity(final UserEntity userEntity) {
         return UserResponse.builder()
@@ -25,6 +28,8 @@ public class UserResponse {
             .name(userEntity.getName())
             .cellphone(userEntity.getCellphone())
             .email(userEntity.getEmail())
+            .createdAt(userEntity.getCreatedAt())
+            .modifiedAt(userEntity.getModifiedAt())
             .build();
     }
 }
